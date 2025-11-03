@@ -121,6 +121,9 @@ def clonotype_imbalance(
             "hue": groupby,
         }
 
+        if "ax" in kwargs:
+            tclt_kws["ax"] = kwargs["ax"]
+
         df = df.sort_values(by="pValue")
         df = df.head(n=top_n)
 
