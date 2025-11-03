@@ -139,13 +139,13 @@ def clonotype_imbalance(
                 id_vars=[groupby, replicate_col],
                 value_name="Normalized abundance",
             )  # Melt is undoing pivot, but after pivot, we also get the zero freqs
+            tclt_kws.update(kwargs)
             if plot_type == "box":
                 ax = sns.boxplot(**tclt_kws)
             else:
                 if plot_type == "bar":
                     ax = sns.barplot(**tclt_kws)
                 else:
-                    tclt_kws.update(kwargs)
                     ax = sns.stripplot(**tclt_kws)
 
         else:
