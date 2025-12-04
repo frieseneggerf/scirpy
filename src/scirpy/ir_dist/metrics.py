@@ -1622,7 +1622,10 @@ class FastAlignmentDistanceCalculator(ParallelDistanceCalculator):
         }
 
         if subst_mat not in penalty_dict.keys():
-            raise Exception("Invalid substitution matrix.")
+            if estimated_penalty is not None:
+                logging.warning(f"Custom substitution matrix: '{subst_mat}'")
+            else:
+                raise Exception("Invalid substitution matrix or missing estimated_penalty.")
 
         self.estimated_penalty = estimated_penalty if estimated_penalty is not None else penalty_dict[subst_mat]
 
